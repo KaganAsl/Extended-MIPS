@@ -41,6 +41,7 @@ wire [31:0] pc_plus_4_out, pc_plus_branch_out;
 
 // Shift
 wire [31:0] shift_out;
+wire [31:0] pc_extend_shift_out;
 
 // Sign extend
 wire [31:0] sign_extend_out;
@@ -106,8 +107,11 @@ mult_2_to_1_32bit mux4(pc_plus_4_out, pc_plus_branch_out, pc_mux_select, mux_bra
 // pc sign extend
 pc_sign_extend pc_s_ext(inst_23_to_0, pc_sign_extend_out);
 
+// pc shift
+shift pc_shift(pc_sign_extend_out, pc_extend_shift_out);
+
 // pc select
-mult_2_to_1_32bit mux5(mux_branch_out, pc_sign_extend_out, jump, mux_jump_out);
+mult_2_to_1_32bit mux5(mux_branch_out, pc_extend_shift_out, jump, mux_jump_out);
 
 // Alu control
 alu_cont alu_control(alu_op1, alu_op0, inst_5_to_0, alu_cont_out);
