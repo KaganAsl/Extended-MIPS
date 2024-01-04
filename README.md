@@ -79,3 +79,6 @@ Opcode/Rs = $6/Rt = $3/Address <br>
 Opcode/Rs = $4/Rt = $3/Address <br>
 00110010/0100/0011/1111111111111100 <br>
 3243FFFC
+
+### Datapath
+![Datapath](./datapath.svg)
